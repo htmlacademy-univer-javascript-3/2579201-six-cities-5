@@ -1,11 +1,11 @@
-import { MainPage } from '../../pages/MainPage/MainPage';
+import { Main } from '../../pages/Main/Main';
 
 type AppProps = {
-  placeNumber: number;
+  placeCount: number;
 }
 
-const App = ({ placeNumber } : AppProps) : JSX.Element => (
-  <MainPage placeNumber={placeNumber} />
+const App = ({ placeCount } : AppProps) : JSX.Element => (
+  <Main placeCount={placeCount} />
 );
 
 export { App };

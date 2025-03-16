@@ -1,4 +1,4 @@
-const FavoritesPage = () => (
+const Favorites = () => (
   <div className="page">
     <header className="header">
       <div className="container">
@@ -166,4 +166,4 @@ const FavoritesPage = () => (
   </div>
 );
 
-export { FavoritesPage };
+export { Favorites };

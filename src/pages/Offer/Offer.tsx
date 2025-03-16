@@ -1,4 +1,4 @@
-const OfferPage = () : JSX.Element => (
+const Offer = () : JSX.Element => (
   <div className="page">
     <header className="header">
       <div className="container">
@@ -334,4 +334,4 @@ const OfferPage = () : JSX.Element => (
   </div>
 );
 
-export { OfferPage };
+export { Offer };

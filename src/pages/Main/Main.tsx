@@ -1,10 +1,10 @@
 import { OfferCard } from '../../components/OfferCard/OfferCard';
 
-type MainPageProps = {
-  placeNumber: number;
+type MainProps = {
+  placeCount: number;
 }
 
-const MainPage = ({placeNumber} : MainPageProps) : JSX.Element => (
+const Main = ({placeCount} : MainProps) : JSX.Element => (
   <div className="page page--gray page--main">
     <header className="header">
       <div className="container">
@@ -77,7 +77,7 @@ const MainPage = ({placeNumber} : MainPageProps) : JSX.Element => (
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">{placeNumber} places to stay in Amsterdam</b>
+            <b className="places__found">{placeCount} places to stay in Amsterdam</b>
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
               <span className="places__sorting-type" tabIndex={0}>
@@ -110,4 +110,4 @@ const MainPage = ({placeNumber} : MainPageProps) : JSX.Element => (
   </div>
 );
 
-export { MainPage };
+export { Main };

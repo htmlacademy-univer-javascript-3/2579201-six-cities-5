@@ -1,3 +1,1 @@
-const PlaceNumber = 5;
-
-export { PlaceNumber };
+export const PlaceNumber = 5;
