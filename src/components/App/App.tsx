@@ -5,6 +5,7 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import { Offer } from '../../pages/Offer/Offer';
 import { NotFound } from '../../pages/NotFound/NotFound';
 import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
+import { AppRoute } from '../../const';
 type AppProps = {
   placeCount: number;
 }
@@ -13,15 +14,15 @@ const App = ({ placeCount } : AppProps) : JSX.Element => (
   <BrowserRouter>
     <Routes>
       <Route
-        path='/'
+        path={AppRoute.Root}
         element={<Main placeCount={placeCount} />}
       />
       <Route
-        path='/login'
+        path={AppRoute.Login}
         element={<Login />}
       />
       <Route
-        path='/favorites'
+        path={AppRoute.Favorites}
         element={
           <PrivateRoute isAuth={false}>
             <Favorites/>
@@ -29,14 +30,13 @@ const App = ({ placeCount } : AppProps) : JSX.Element => (
         }
       />
       <Route
-        path='/offer/:id'
+        path={AppRoute.Offer}
         element={<Offer />}
       />
       <Route
         path='*'
         element={<NotFound />}
       />
-
     </Routes>
   </BrowserRouter>
 
