@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { OfferType } from '../../types/offers';
 import { OfferCard } from '../OfferCard/OfferCard';
 
@@ -7,9 +7,9 @@ type OffersListProps = {
   block: string;
 }
 
-const OffersList = ({offers, block}: OffersListProps) => {
-  const [activeOffer, setActiveOffer] = useState<OfferType | null>(null);
-  return (
+const OffersList = ({offers, block}: OffersListProps) =>
+  // const [activeOffer, setActiveOffer] = useState<OfferType | null>(null);
+  (
     <>
       {offers.map((offer)=> (
         <OfferCard
@@ -18,6 +18,4 @@ const OffersList = ({offers, block}: OffersListProps) => {
           onMouseLeave={() => setActiveOffer(null)}
         />))}
     </>);
-};
-
 export {OffersList};
