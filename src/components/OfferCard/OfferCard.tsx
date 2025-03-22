@@ -4,19 +4,19 @@ import { AppRoute } from '../../const';
 
 type OfferCardType ={
   offer: OfferType;
-  onMouseEnter: () => void;
-  onMouseLeave: () => void;
+  // onMouseEnter: () => void;
+  // onMouseLeave: () => void;
   block: string;
 }
-
-const OfferCard = ({offer, onMouseEnter, onMouseLeave, block} : OfferCardType): JSX.Element => {
+// onMouseEnter, onMouseLeave,
+const OfferCard = ({offer, block} : OfferCardType): JSX.Element => {
   const {isPremium, title, type, isFavorite, price, rating, previewImage} = offer;
   const ratingProcent = `${(rating / 5) * 100 }%`;
   const imageSize = block === 'favorites' ? {width: 150, height: 110} : {width: 260, height: 200};
   return (
     <article
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
+      // onMouseEnter={onMouseEnter}
+      // onMouseLeave={onMouseLeave}
       className={`${block}__card place-card`}
     >
       {isPremium ?

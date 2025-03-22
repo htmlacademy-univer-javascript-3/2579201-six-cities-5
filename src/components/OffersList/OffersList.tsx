@@ -14,8 +14,8 @@ const OffersList = ({offers, block}: OffersListProps) =>
       {offers.map((offer)=> (
         <OfferCard
           offer={offer} key={offer.id} block={block}
-          onMouseEnter={() => setActiveOffer(offer)}
-          onMouseLeave={() => setActiveOffer(null)}
+          // onMouseEnter={() => setActiveOffer(offer)}
+          // onMouseLeave={() => setActiveOffer(null)}
         />))}
     </>);
 export {OffersList};
