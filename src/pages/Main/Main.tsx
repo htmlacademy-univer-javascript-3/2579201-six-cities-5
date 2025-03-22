@@ -1,10 +1,11 @@
-import { OfferCard } from '../../components/OfferCard/OfferCard';
+import { OffersList } from '../../components/OffersList/OffersList';
+import { OfferType } from '../../types/offers';
 
 type MainProps = {
-  placeCount: number;
+  offers: OfferType[];
 }
 
-const Main = ({placeCount} : MainProps) : JSX.Element => (
+const Main = ({offers} : MainProps) : JSX.Element => (
   <div className="page page--gray page--main">
     <header className="header">
       <div className="container">
@@ -77,7 +78,7 @@ const Main = ({placeCount} : MainProps) : JSX.Element => (
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">{placeCount} places to stay in Amsterdam</b>
+            <b className="places__found">{offers.length} places to stay in Amsterdam</b>
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
               <span className="places__sorting-type" tabIndex={0}>
@@ -94,11 +95,7 @@ const Main = ({placeCount} : MainProps) : JSX.Element => (
               </ul>
             </form>
             <div className="cities__places-list places__list tabs__content">
-              <OfferCard />
-              <OfferCard />
-              <OfferCard />
-              <OfferCard />
-              <OfferCard />
+              <OffersList offers={offers} block={'cities'}/>
             </div>
           </section>
           <div className="cities__right-section">
