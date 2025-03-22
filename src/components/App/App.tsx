@@ -6,16 +6,17 @@ import { Offer } from '../../pages/Offer/Offer';
 import { NotFound } from '../../pages/NotFound/NotFound';
 import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
 import { AppRoute } from '../../const';
+import { OfferType } from '../../types/offers';
 type AppProps = {
-  placeCount: number;
+  offers: OfferType[];
 }
 
-const App = ({ placeCount } : AppProps) : JSX.Element => (
+const App = ({ offers } : AppProps) : JSX.Element => (
   <BrowserRouter>
     <Routes>
       <Route
         path={AppRoute.Root}
-        element={<Main placeCount={placeCount} />}
+        element={<Main offers={offers}/>}
       />
       <Route
         path={AppRoute.Login}
@@ -24,13 +25,13 @@ const App = ({ placeCount } : AppProps) : JSX.Element => (
       <Route
         path={AppRoute.Favorites}
         element={
-          <PrivateRoute isAuth={false}>
-            <Favorites/>
+          <PrivateRoute isAuth>
+            <Favorites offers={offers}/>
           </PrivateRoute>
         }
       />
       <Route
-        path={AppRoute.Offer}
+        path={`${AppRoute.Offer}:id`}
         element={<Offer />}
       />
       <Route
