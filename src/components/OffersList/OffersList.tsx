@@ -1,21 +1,25 @@
-// import { useState } from 'react';
+import { useState } from 'react';
 import { OfferType } from '../../types/offers';
 import { OfferCard } from '../OfferCard/OfferCard';
 
 type OffersListProps = {
   offers: OfferType[];
-  block: string;
+  pageBlock: 'favorites' | 'cities';
 }
 
-const OffersList = ({offers, block}: OffersListProps) =>
-  // const [activeOffer, setActiveOffer] = useState<OfferType | null>(null);
-  (
+const OffersList = ({offers, pageBlock}: OffersListProps) =>{
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [activeOffer, setActiveOffer] = useState<OfferType | null>(null);
+
+  return(
     <>
       {offers.map((offer)=> (
         <OfferCard
-          offer={offer} key={offer.id} block={block}
-          // onMouseEnter={() => setActiveOffer(offer)}
-          // onMouseLeave={() => setActiveOffer(null)}
+          offer={offer} key={offer.id} pageBlock={pageBlock}
+          onMouseEnter={() => setActiveOffer(offer)}
+          onMouseLeave={() => setActiveOffer(null)}
         />))}
     </>);
+};
+
 export {OffersList};

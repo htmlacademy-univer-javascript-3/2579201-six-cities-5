@@ -26,10 +26,4 @@ export type OfferType = {
   isPremium: boolean;
   rating: number;
   previewImage: string;
-  // description: string;
-  // bedrooms: number;
-  // goods: [string];
-  // host: Host;
-  // images: [string];
-  // maxAdults: number;
   }

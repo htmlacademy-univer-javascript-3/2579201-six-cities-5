@@ -1,10 +1,12 @@
-import { ChangeEvent, Fragment, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
+import { RatingStar } from '../RatingStar/RatingStar';
+import { RatingValue } from '../../types/rating';
 
 const ReviewsForm = () => {
   const [comment, setComment] = useState('');
-  const [rating, setRating] = useState('');
+  const [rating, setRating] = useState<RatingValue | null>(null);
 
-  const scores = {
+  const scores: Record<RatingValue, string> = {
     '5' : 'perfect',
     '4' : 'good',
     '3' : 'not bad',
@@ -16,30 +18,18 @@ const ReviewsForm = () => {
     setComment(event.target.value);
   }
 
-  function handleRatingChange(event: ChangeEvent<HTMLInputElement>){
-    setRating(event.target.value);
+  function handleRatingChange(value: RatingValue){
+    setRating(value);
   }
 
-  const isSubmitDisabled = comment.length > 50 && rating !== '';
+  const isSubmitDisabled = comment.length > 50 && rating !== null;
 
   return (
     <form className="reviews__form form" action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {Object.entries(scores).reverse().map(([score, title]) =>(
-          <Fragment key={score}>
-            <input className="form__rating-input visually-hidden" name="rating"
-              value={score} id={`${score}-stars`}
-              type="radio"
-              checked={rating === score}
-              onChange={handleRatingChange}
-            />
-            <label htmlFor={`${score}-stars`} className="reviews__rating-label form__rating-label" title={title}>
-              <svg className="form__star-image" width="37" height="33">
-                <use xlinkHref="#icon-star"></use>
-              </svg>
-            </label>
-          </Fragment>
+          <RatingStar key={score} score={score as RatingValue} rating={rating as RatingValue} title={title} handleRatingChange={handleRatingChange}/>
         ))}
       </div>
       <textarea className="reviews__textarea form__textarea" id="review" name="review"
