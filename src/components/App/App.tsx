@@ -6,40 +6,55 @@ import { Offer } from '../../pages/Offer/Offer';
 import { NotFound } from '../../pages/NotFound/NotFound';
 import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
 import { AppRoute } from '../../const';
+import { OfferType } from '../../types/offers';
+import { FavoritesByCity } from '../../types/favorites';
 type AppProps = {
-  placeCount: number;
+  offers: OfferType[];
 }
 
-const App = ({ placeCount } : AppProps) : JSX.Element => (
-  <BrowserRouter>
-    <Routes>
-      <Route
-        path={AppRoute.Root}
-        element={<Main placeCount={placeCount} />}
-      />
-      <Route
-        path={AppRoute.Login}
-        element={<Login />}
-      />
-      <Route
-        path={AppRoute.Favorites}
-        element={
-          <PrivateRoute isAuth={false}>
-            <Favorites/>
-          </PrivateRoute>
+const App = ({ offers } : AppProps) : JSX.Element => {
+  function getFavoritesByCity(offersList: OfferType[]) {
+    return offersList
+      .filter((offer) => offer.isFavorite)
+      .reduce((acc: FavoritesByCity, offer) => {
+        const cityName = offer.city.name;
+        if (!acc[cityName]) {
+          acc[cityName] = [];
         }
-      />
-      <Route
-        path={AppRoute.Offer}
-        element={<Offer />}
-      />
-      <Route
-        path='*'
-        element={<NotFound />}
-      />
-    </Routes>
-  </BrowserRouter>
+        acc[cityName].push(offer);
+        return acc;
+      }, {});
+  }
+  return(
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path={AppRoute.Root}
+          element={<Main offers={offers}/>}
+        />
+        <Route
+          path={AppRoute.Login}
+          element={<Login />}
+        />
+        <Route
+          path={AppRoute.Favorites}
+          element={
+            <PrivateRoute isAuth>
+              <Favorites offers={getFavoritesByCity(offers)}/>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={`${AppRoute.Offer}:id`}
+          element={<Offer />}
+        />
+        <Route
+          path='*'
+          element={<NotFound />}
+        />
+      </Routes>
+    </BrowserRouter>);
 
-);
+};
 
 export { App };
