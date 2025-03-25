@@ -8,8 +8,7 @@ type OffersListProps = {
 }
 
 const OffersList = ({offers, pageBlock}: OffersListProps) =>{
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [activeOffer, setActiveOffer] = useState<OfferType | null>(null);
+  const [, setActiveOffer] = useState<OfferType | null>(null);
 
   return(
     <>

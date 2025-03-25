@@ -29,7 +29,7 @@ const ReviewsForm = () => {
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {Object.entries(scores).reverse().map(([score, title]) =>(
-          <RatingStar key={score} score={score as RatingValue} rating={rating as RatingValue} title={title} handleRatingChange={handleRatingChange}/>
+          <RatingStar key={score} score={score as RatingValue} rating={rating as RatingValue} title={title} onRatingChange={handleRatingChange}/>
         ))}
       </div>
       <textarea className="reviews__textarea form__textarea" id="review" name="review"

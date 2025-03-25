@@ -12,7 +12,6 @@ type OfferCardType ={
 
 const OfferCard = ({offer, pageBlock, onMouseEnter, onMouseLeave,} : OfferCardType): JSX.Element => {
   const {isPremium, title, type, isFavorite, price, rating, previewImage} = offer;
-  const ratingPercent = `${(rating / 5) * 100 }%`;
   const imageSize = pageBlock === 'favorites' ? {width: 150, height: 110} : {width: 260, height: 200};
   return (
     <article
@@ -43,7 +42,7 @@ const OfferCard = ({offer, pageBlock, onMouseEnter, onMouseLeave,} : OfferCardTy
             <span className="visually-hidden">To bookmarks</span>
           </button>
         </div>
-        <CardRating percent={ratingPercent} />
+        <CardRating rating={rating} />
         <h2 className="place-card__name">
           <Link to={`${AppRoute.Offer}${offer.id}`}>{title}</Link>
         </h2>

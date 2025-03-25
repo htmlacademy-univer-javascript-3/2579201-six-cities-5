@@ -7,6 +7,7 @@ import { NotFound } from '../../pages/NotFound/NotFound';
 import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
 import { AppRoute } from '../../const';
 import { OfferType } from '../../types/offers';
+import { FavoritesByCity } from '../../types/favorites';
 type AppProps = {
   offers: OfferType[];
 }
@@ -15,12 +16,12 @@ const App = ({ offers } : AppProps) : JSX.Element => {
   function getFavoritesByCity(offersList: OfferType[]) {
     return offersList
       .filter((offer) => offer.isFavorite)
-      .reduce((acc: Record<string, { offers: OfferType[] }>, offer) => {
+      .reduce((acc: FavoritesByCity, offer) => {
         const cityName = offer.city.name;
         if (!acc[cityName]) {
-          acc[cityName] = { offers: [] };
+          acc[cityName] = [];
         }
-        acc[cityName].offers.push(offer);
+        acc[cityName].push(offer);
         return acc;
       }, {});
   }
