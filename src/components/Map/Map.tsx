@@ -33,7 +33,7 @@ const Map = ({city, points}: MapProps) =>{
     }
   }, [map, points]);
   return (
-    <div className="cities__map map"
+    <div
       style={{height: '100%'}}
       ref={mapRef}
     >
