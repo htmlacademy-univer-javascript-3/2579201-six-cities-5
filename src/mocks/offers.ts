@@ -1,21 +1,15 @@
 import { OfferType } from '../types/offers';
+import { cities } from './cities';
 
 export const offers: OfferType[] = [{
   'id': 'offer1',
   'title': 'Beautiful & luxurious studio at great location',
   'type': 'apartment',
   'price': 120,
-  'city': {
-    'name': 'Amsterdam',
-    'location': {
-      'latitude': 52.35514938496378,
-      'longitude': 4.673877537499948,
-      'zoom': 8
-    }
-  },
+  'city': cities.Amsterdam,
   'location': {
-    'latitude': 52.35514938496378,
-    'longitude': 4.673877537499948,
+    'latitude': 52.3909553943508,
+    'longitude': 4.85309666406198,
     'zoom': 8
   },
   'isFavorite': true,
@@ -28,17 +22,10 @@ export const offers: OfferType[] = [{
   'title': 'Wood and Stone place',
   'type': 'apartment',
   'price': 130,
-  'city': {
-    'name': 'Amsterdam',
-    'location': {
-      'latitude': 52.35514938496378,
-      'longitude': 4.673877537499948,
-      'zoom': 8
-    }
-  },
+  'city': cities.Amsterdam,
   'location': {
-    'latitude': 52.35514938496378,
-    'longitude': 4.673877537499948,
+    'latitude': 52.3609553943508,
+    'longitude': 4.85309666406198,
     'zoom': 8
   },
   'isFavorite': false,
@@ -51,17 +38,10 @@ export const offers: OfferType[] = [{
   'title': 'Canal View Prinsengracht',
   'type': 'apartment',
   'price': 140,
-  'city': {
-    'name': 'Amsterdam',
-    'location': {
-      'latitude': 52.35514938496378,
-      'longitude': 4.673877537499948,
-      'zoom': 8
-    }
-  },
+  'city': cities.Amsterdam,
   'location': {
-    'latitude': 52.35514938496378,
-    'longitude': 4.673877537499948,
+    'latitude': 52.3909553943508,
+    'longitude': 4.929309666406198,
     'zoom': 8
   },
   'isFavorite': false,
@@ -74,17 +54,10 @@ export const offers: OfferType[] = [{
   'title': 'Nice, cozy, warm big bed apartment',
   'type': 'apartment',
   'price': 150,
-  'city': {
-    'name': 'Amsterdam',
-    'location': {
-      'latitude': 52.35514938496378,
-      'longitude': 4.673877537499948,
-      'zoom': 8
-    }
-  },
+  'city': cities.Amsterdam,
   'location': {
-    'latitude': 52.35514938496378,
-    'longitude': 4.673877537499948,
+    'latitude': 52.3809553943508,
+    'longitude': 4.939309666406198,
     'zoom': 8
   },
   'isFavorite': true,
@@ -92,4 +65,5 @@ export const offers: OfferType[] = [{
   'rating': 3,
   'previewImage': 'img/apartment-01.jpg'
 },
+
 ];
