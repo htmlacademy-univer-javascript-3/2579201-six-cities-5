@@ -7,9 +7,9 @@ type MainProps = {
   offers: OfferType[];
 }
 
-const Main = ({offers} : MainProps) : JSX.Element => {
+const Main = ({offers}: MainProps) : JSX.Element => {
   function getPoints(offersList:OfferType[]){
-    return offersList.filter((offer)=> offer.city.name)
+    return offersList
       .reduce((acc: Record<string, Point[]>, offer) => {
         const cityName = offer.city.name;
         if (!acc[cityName]) {
