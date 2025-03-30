@@ -1,4 +1,6 @@
-export const cities = {
+import { City } from '../types/offers';
+
+export const cities : Record<string, City> = {
   Amsterdam:  {
     'name': 'Amsterdam',
     'location': {

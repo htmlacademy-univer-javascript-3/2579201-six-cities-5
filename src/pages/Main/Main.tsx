@@ -1,24 +1,16 @@
 import { Map } from '../../components/Map/Map';
 import { OffersList } from '../../components/OffersList/OffersList';
+import { usePoints } from '../../hooks/usePoints';
 import { cities } from '../../mocks/cities';
-import { OfferType, Point } from '../../types/offers';
+import { OfferType } from '../../types/offers';
 
 type MainProps = {
   offers: OfferType[];
 }
 
 const Main = ({offers}: MainProps) : JSX.Element => {
-  function getPoints(offersList:OfferType[]){
-    return offersList
-      .reduce((acc: Record<string, Point[]>, offer) => {
-        const cityName = offer.city.name;
-        if (!acc[cityName]) {
-          acc[cityName] = [];
-        }
-        acc[cityName].push(offer.location);
-        return acc;
-      }, {});
-  }
+  const points = usePoints(offers);
+
   return(
     <div className="page page--gray page--main">
       <header className="header">
@@ -113,7 +105,7 @@ const Main = ({offers}: MainProps) : JSX.Element => {
               </div>
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"><Map points={getPoints(offers)} city={cities.Amsterdam}/></section>
+              <Map points={points} city={cities.Amsterdam} pageBlock='cities'/>
             </div>
           </div>
         </div>
