@@ -8,11 +8,13 @@ import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
 import { AppRoute } from '../../const';
 import { OfferType } from '../../types/offers';
 import { FavoritesByCity } from '../../types/favorites';
+import { Review } from '../../types/review';
 type AppProps = {
   offers: OfferType[];
+  reviews: Review[];
 }
 
-const App = ({ offers } : AppProps) : JSX.Element => {
+const App = ({ offers, reviews } : AppProps) : JSX.Element => {
   function getFavoritesByCity(offersList: OfferType[]) {
     return offersList
       .filter((offer) => offer.isFavorite)
@@ -46,7 +48,7 @@ const App = ({ offers } : AppProps) : JSX.Element => {
         />
         <Route
           path={`${AppRoute.Offer}:id`}
-          element={<Offer />}
+          element={<Offer reviews={reviews}/>}
         />
         <Route
           path='*'

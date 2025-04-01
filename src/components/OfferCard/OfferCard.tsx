@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import { OfferType } from '../../types/offers';
 import { AppRoute } from '../../const';
-import { CardRating } from '../CardRating/CardRating';
+import { Rating } from '../Rating/Rating';
 
 type OfferCardType ={
   offer: OfferType;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
-  pageBlock: 'favorites' | 'cities';
+  pageBlock: 'favorites' | 'cities' | 'near-places';
 }
 
 const OfferCard = ({offer, pageBlock, onMouseEnter, onMouseLeave,} : OfferCardType): JSX.Element => {
@@ -42,7 +42,9 @@ const OfferCard = ({offer, pageBlock, onMouseEnter, onMouseLeave,} : OfferCardTy
             <span className="visually-hidden">To bookmarks</span>
           </button>
         </div>
-        <CardRating rating={rating} />
+        <div className="place-card__rating rating">
+          <Rating rating={rating} pageBlock='place-card__stars'/>
+        </div>
         <h2 className="place-card__name">
           <Link to={`${AppRoute.Offer}${offer.id}`}>{title}</Link>
         </h2>
