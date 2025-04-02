@@ -42,9 +42,7 @@ const OfferCard = ({offer, pageBlock, onMouseEnter, onMouseLeave,} : OfferCardTy
             <span className="visually-hidden">To bookmarks</span>
           </button>
         </div>
-        <div className="place-card__rating rating">
-          <Rating rating={rating} pageBlock='place-card__stars'/>
-        </div>
+        <Rating rating={rating} pageBlock='place-card'/>
         <h2 className="place-card__name">
           <Link to={`${AppRoute.Offer}${offer.id}`}>{title}</Link>
         </h2>

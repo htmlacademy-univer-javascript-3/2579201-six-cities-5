@@ -1,4 +1,5 @@
 import { Review } from '../../types/review';
+import { Rating } from '../Rating/Rating';
 import { ReviewTime } from './components/ReviewTime/ReviewTime';
 
 type Props = {
@@ -19,12 +20,7 @@ const ReviewItem = ({review}: Props) => {
         </span>
       </div>
       <div className="reviews__info">
-        <div className="reviews__rating rating">
-          <div className="reviews__stars rating__stars">
-            <span style={{width: `${rating * 20}%`}}></span>
-            <span className="visually-hidden">Rating</span>
-          </div>
-        </div>
+        <Rating pageBlock='reviews' rating={rating}/>
         <p className="reviews__text">
           {comment}
         </p>

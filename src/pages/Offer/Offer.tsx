@@ -86,10 +86,7 @@ const Offer = ({reviews} : OfferProps) : JSX.Element => {
                   <span className="visually-hidden">To bookmarks</span>
                 </button>
               </div>
-              <div className="offer__rating rating">
-                <Rating rating={4} pageBlock='offer__stars'/>
-                <span className="offer__rating-value rating__value">4.8</span>
-              </div>
+              <Rating rating={4} pageBlock='offer'/>
               <ul className="offer__features">
                 <li className="offer__feature offer__feature--entire">
                   Apartment
