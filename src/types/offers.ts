@@ -1,3 +1,5 @@
+import { RatingValue } from './rating';
+
 export type Location = {
   latitude: number;
   longitude: number;
@@ -29,6 +31,6 @@ export type OfferType = {
   location: Location;
   isFavorite: boolean;
   isPremium: boolean;
-  rating: number;
+  rating: RatingValue;
   previewImage: string;
   }

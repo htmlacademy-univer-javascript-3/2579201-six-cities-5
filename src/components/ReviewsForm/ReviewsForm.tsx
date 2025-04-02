@@ -7,11 +7,11 @@ const ReviewsForm = () => {
   const [rating, setRating] = useState<RatingValue | null>(null);
 
   const scores: Record<RatingValue, string> = {
-    '5' : 'perfect',
-    '4' : 'good',
-    '3' : 'not bad',
-    '2' : 'badly',
-    '1' : 'terribly',
+    5 : 'perfect',
+    4 : 'good',
+    3 : 'not bad',
+    2 : 'badly',
+    1 : 'terribly',
   };
 
   function handleCommentChange(event: ChangeEvent<HTMLTextAreaElement>){
@@ -29,7 +29,7 @@ const ReviewsForm = () => {
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {Object.entries(scores).reverse().map(([score, title]) =>(
-          <RatingStar key={score} score={score as RatingValue} rating={rating as RatingValue} title={title} onRatingChange={handleRatingChange}/>
+          <RatingStar key={score} score={Number(score)} rating={Number(rating)} title={title} onRatingChange={handleRatingChange}/>
         ))}
       </div>
       <textarea className="reviews__textarea form__textarea" id="review" name="review"

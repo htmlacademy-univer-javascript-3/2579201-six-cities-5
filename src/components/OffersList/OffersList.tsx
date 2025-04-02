@@ -4,7 +4,7 @@ import { OfferCard } from '../OfferCard/OfferCard';
 
 type OffersListProps = {
   offers: OfferType[];
-  pageBlock: 'favorites' | 'cities';
+  pageBlock: 'favorites' | 'cities' | 'near-places';
 }
 
 const OffersList = ({offers, pageBlock}: OffersListProps) =>{
