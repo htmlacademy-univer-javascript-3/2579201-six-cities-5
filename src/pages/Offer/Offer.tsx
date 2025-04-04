@@ -3,9 +3,9 @@ import { OffersList } from '../../components/OffersList/OffersList';
 import { Rating } from '../../components/Rating/Rating';
 import { ReviewList } from '../../components/ReviewList/ReviewList';
 import { ReviewsForm } from '../../components/ReviewsForm/ReviewsForm';
+import { cities } from '../../const';
 import { usePoints } from '../../hooks/usePoints';
-import { cities } from '../../mocks/cities';
-import { offers } from '../../mocks/offers';
+import { mockOffers } from '../../mocks/offers';
 import { Review } from '../../types/review';
 
 type OfferProps = {
@@ -13,7 +13,7 @@ type OfferProps = {
 }
 
 const Offer = ({reviews} : OfferProps) : JSX.Element => {
-  const nearbiestOffers = offers.slice(0,3);
+  const nearbiestOffers = mockOffers.slice(0,3);
   const nearbiestPoints = usePoints(nearbiestOffers);
   return(
     <div className="page">
