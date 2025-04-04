@@ -7,18 +7,16 @@ import { defaultCustomIcon } from '../../const';
 
 type MapProps = {
   city: City;
-  points: Record<string, Point[]>;
+  points: Point[];
   pageBlock: 'offer' | 'cities';
 }
 
 const Map = ({city, points, pageBlock}: MapProps) =>{
   const mapRef = useRef<HTMLDivElement>(null);
   const map = useMap(mapRef, city);
-
-
   useEffect(() => {
     if (map) {
-      points[city.name].forEach((point) => {
+      points.map((point) => {
         leaflet
           .marker({
             lat: point.latitude,
@@ -29,7 +27,7 @@ const Map = ({city, points, pageBlock}: MapProps) =>{
           .addTo(map);
       });
     }
-  }, [map, points]);
+  }, [map, points, city]);
   return (
     <section className={`${pageBlock}__map map"`}>
       <div

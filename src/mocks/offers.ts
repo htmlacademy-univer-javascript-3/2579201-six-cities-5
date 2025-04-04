@@ -1,7 +1,7 @@
+import { cities } from '../const';
 import { OfferType } from '../types/offers';
-import { cities } from './cities';
 
-export const offers: OfferType[] = [{
+export const mockOffers: OfferType[] = [{
   'id': 'offer1',
   'title': 'Beautiful & luxurious studio at great location',
   'type': 'apartment',

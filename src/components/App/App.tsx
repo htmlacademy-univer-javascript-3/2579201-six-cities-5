@@ -9,12 +9,12 @@ import { AppRoute } from '../../const';
 import { OfferType } from '../../types/offers';
 import { FavoritesByCity } from '../../types/favorites';
 import { Review } from '../../types/review';
+import { mockOffers } from '../../mocks/offers';
 type AppProps = {
-  offers: OfferType[];
   reviews: Review[];
 }
 
-const App = ({ offers, reviews } : AppProps) : JSX.Element => {
+const App = ({ reviews } : AppProps) : JSX.Element => {
   function getFavoritesByCity(offersList: OfferType[]) {
     return offersList
       .filter((offer) => offer.isFavorite)
@@ -32,7 +32,7 @@ const App = ({ offers, reviews } : AppProps) : JSX.Element => {
       <Routes>
         <Route
           path={AppRoute.Root}
-          element={<Main offers={offers}/>}
+          element={<Main />}
         />
         <Route
           path={AppRoute.Login}
@@ -42,7 +42,7 @@ const App = ({ offers, reviews } : AppProps) : JSX.Element => {
           path={AppRoute.Favorites}
           element={
             <PrivateRoute isAuth>
-              <Favorites offers={getFavoritesByCity(offers)}/>
+              <Favorites offers={getFavoritesByCity(mockOffers)}/>
             </PrivateRoute>
           }
         />
