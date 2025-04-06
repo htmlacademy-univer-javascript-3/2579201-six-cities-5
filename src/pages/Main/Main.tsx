@@ -2,12 +2,13 @@ import { CityList } from '../../components/CityList/CityList';
 import { Map } from '../../components/Map/Map';
 import { OffersList } from '../../components/OffersList/OffersList';
 import { usePoints } from '../../hooks/usePoints';
-import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
 import { fetchOffers } from '../../store/action';
 import { mockOffers } from '../../mocks/offers';
 import { getOffersByCity } from '../../utils/offers';
 import { cities } from '../../const';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
 
 const Main = () : JSX.Element => {
 

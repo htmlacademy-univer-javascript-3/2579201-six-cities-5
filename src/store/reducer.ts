@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { cityChange, fetchOffers } from './action';
+import { changeActiveCity, fetchOffers } from './action';
 import { OfferType } from '../types/offers';
 import { cities } from '../const';
 
@@ -10,7 +10,7 @@ const initialState = {
 
 const reducer = createReducer(initialState, (builder)=>{
   builder
-    .addCase(cityChange, (state, action)=>{
+    .addCase(changeActiveCity, (state, action)=>{
       const {city} = action.payload;
       state.city = city;
     })
