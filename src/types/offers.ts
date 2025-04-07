@@ -1,5 +1,7 @@
 import { RatingValue } from './rating';
 
+export type CityName = 'Amsterdam' | 'Paris' | 'Cologne' | 'Brussels' | 'Hamburg' | 'Dusseldorf';
+
 export type Location = {
   latitude: number;
   longitude: number;
@@ -12,7 +14,7 @@ export type Point = {
 };
 
 export type City = {
-  name: string;
+  name: CityName;
   location: Location;
 }
 

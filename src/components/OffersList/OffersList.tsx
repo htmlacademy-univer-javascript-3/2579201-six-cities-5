@@ -17,7 +17,7 @@ const OffersList = ({offers, pageBlock}: OffersListProps) =>{
           offer={offer} key={offer.id} pageBlock={pageBlock}
           onMouseEnter={() => setActiveOffer(offer)}
           onMouseLeave={() => setActiveOffer(null)}
-        />))}
+        />)) }
     </>);
 };
 
