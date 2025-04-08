@@ -1,11 +1,19 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeActiveCity, fetchOffers } from './action';
-import { OfferType } from '../types/offers';
+import { changeActiveCity, changeActiveSort, fetchOffers, setHoveredOffer } from './action';
+import { City, OfferType } from '../types/offers';
 import { cities } from '../const';
+import { TSort } from '../types/sort';
 
-const initialState = {
+const initialState:{
+  city: City;
+  offers: OfferType[];
+  activeSort: TSort;
+  hoveredOffer: OfferType | null;
+} = {
   city: cities.Paris,
   offers: [] as OfferType[],
+  activeSort: 'Popular',
+  hoveredOffer: null,
 };
 
 const reducer = createReducer(initialState, (builder)=>{
@@ -17,6 +25,12 @@ const reducer = createReducer(initialState, (builder)=>{
     .addCase(fetchOffers, (state, action)=>{
       const {offers} = action.payload;
       state.offers = offers;
+    })
+    .addCase(changeActiveSort, (state, action)=>{
+      state.activeSort = action.payload.sort;
+    })
+    .addCase(setHoveredOffer, (state, action)=>{
+      state.hoveredOffer = action.payload.offer;
     });
 });
 
