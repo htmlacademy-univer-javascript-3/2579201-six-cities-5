@@ -1,2 +1,2 @@
-export type TSort = 'Popular' | 'LowToHigh' | 'HighToLow' | 'TopRated';
+export type SortOption = 'Popular' | 'LowToHigh' | 'HighToLow' | 'TopRated';
 

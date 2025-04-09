@@ -2,12 +2,12 @@ import { createReducer } from '@reduxjs/toolkit';
 import { changeActiveCity, changeActiveSort, fetchOffers, setHoveredOffer } from './action';
 import { City, OfferType } from '../types/offers';
 import { cities } from '../const';
-import { TSort } from '../types/sort';
+import { SortOption } from '../types/sort';
 
 const initialState:{
   city: City;
   offers: OfferType[];
-  activeSort: TSort;
+  activeSort: SortOption;
   hoveredOffer: OfferType | null;
 } = {
   city: cities.Paris,

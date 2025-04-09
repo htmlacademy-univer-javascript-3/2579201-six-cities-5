@@ -1,6 +1,6 @@
 import leaflet from 'leaflet';
 import { City } from './types/offers';
-import { TSort } from './types/sort';
+import { SortOption } from './types/sort';
 
 export enum AppRoute {
   Root = '/',
@@ -21,7 +21,7 @@ export const activeCustomIcon = leaflet.icon({
   iconAnchor: [20, 40],
 });
 
-export const SortingMap: Record<TSort, string> = {
+export const SortingMap: Record<SortOption, string> = {
   Popular: 'Popular',
   LowToHigh: 'Price: low to high',
   HighToLow: 'Price: high to low',

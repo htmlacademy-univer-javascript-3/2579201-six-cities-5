@@ -3,10 +3,10 @@ import { SortingMap } from '../../const';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { changeActiveSort } from '../../store/action';
-import { TSort } from '../../types/sort';
+import { SortOption } from '../../types/sort';
 
 
-const Sort = () => {
+const SortBar = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const activeSort = useAppSelector((state)=> state.activeSort);
   const sortRef = useRef<HTMLFormElement>(null);
@@ -50,8 +50,12 @@ const Sort = () => {
         </svg>
       </span>
       <ul className={`places__options places__options--custom ${isOpen && 'places__options--opened'}`}>
-        {(Object.entries(SortingMap) as [TSort, string][]).map(([type, name])=>(
-          <li onClick={()=>dispatch(changeActiveSort({sort: type}))} key={type} tabIndex={0} className={`places__option ${activeSort === type && 'places__option--active'}`}>
+        {(Object.entries(SortingMap) as [SortOption, string][]).map(([type, name])=>(
+          <li onClick={()=>{
+            dispatch(changeActiveSort({sort: type}));
+            setIsOpen(false);
+          }} key={type} tabIndex={0} className={`places__option ${activeSort === type && 'places__option--active'}`}
+          >
             {name}
           </li>
         ))}
@@ -60,4 +64,4 @@ const Sort = () => {
   );
 };
 
-export {Sort};
+export { SortBar };

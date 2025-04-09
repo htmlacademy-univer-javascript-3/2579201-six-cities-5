@@ -9,7 +9,7 @@ import { getOffersByCity } from '../../utils/offers';
 import { cities } from '../../const';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
-import { Sort } from '../../components/Sort/Sort';
+import { SortBar } from '../../components/SortBar/SortBar';
 import { sort } from '../../utils/sort';
 
 const Main = () : JSX.Element => {
@@ -64,7 +64,7 @@ const Main = () : JSX.Element => {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{activeOffers.length} places to stay in {city.name}</b>
-              <Sort />
+              <SortBar />
               <div className="cities__places-list places__list tabs__content">
                 <OffersList offers={sort[activeSort](activeOffers)} pageBlock='cities'/>
               </div>
