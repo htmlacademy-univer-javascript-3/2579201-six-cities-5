@@ -1,6 +1,7 @@
-import { useState } from 'react';
 import { OfferType } from '../../types/offers';
 import { OfferCard } from '../OfferCard/OfferCard';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { setHoveredOffer } from '../../store/action';
 
 type OffersListProps = {
   offers: OfferType[];
@@ -8,15 +9,14 @@ type OffersListProps = {
 }
 
 const OffersList = ({offers, pageBlock}: OffersListProps) =>{
-  const [, setActiveOffer] = useState<OfferType | null>(null);
-
+  const dispatch = useAppDispatch();
   return(
     <>
       {offers.map((offer)=> (
         <OfferCard
           offer={offer} key={offer.id} pageBlock={pageBlock}
-          onMouseEnter={() => setActiveOffer(offer)}
-          onMouseLeave={() => setActiveOffer(null)}
+          onMouseEnter={() => dispatch(setHoveredOffer({offer}))}
+          onMouseLeave={() => dispatch(setHoveredOffer({offer: null}))}
         />)) }
     </>);
 };

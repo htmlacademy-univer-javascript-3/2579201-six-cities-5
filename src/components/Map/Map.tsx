@@ -3,7 +3,8 @@ import 'leaflet/dist/leaflet.css';
 import { useEffect, useRef } from 'react';
 import { City, Point } from '../../types/offers';
 import {useMap} from '../../hooks/useMap';
-import { defaultCustomIcon } from '../../const';
+import { activeCustomIcon, defaultCustomIcon } from '../../const';
+import { useAppSelector } from '../../hooks/useAppSelector';
 
 type MapProps = {
   city: City;
@@ -14,6 +15,8 @@ type MapProps = {
 const Map = ({city, points, pageBlock}: MapProps) =>{
   const mapRef = useRef<HTMLDivElement>(null);
   const map = useMap(mapRef, city);
+
+  const hoveredOffer = useAppSelector((state)=> state.hoveredOffer);
   useEffect(() => {
     if (map) {
       points.map((point) => {
@@ -22,12 +25,12 @@ const Map = ({city, points, pageBlock}: MapProps) =>{
             lat: point.latitude,
             lng: point.longitude,
           }, {
-            icon: defaultCustomIcon,
+            icon: point === hoveredOffer?.location ? activeCustomIcon : defaultCustomIcon,
           })
           .addTo(map);
       });
     }
-  }, [map, points, city]);
+  }, [map, points, city, hoveredOffer]);
   return (
     <section className={`${pageBlock}__map map"`}>
       <div
