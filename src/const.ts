@@ -9,6 +9,12 @@ export enum AppRoute {
   Offer = '/offer/',
 }
 
+export enum APIRoute {
+  Offers = '/offers',
+  Favorite = '/favorite',
+  Comments = '/comments',
+}
+
 export const defaultCustomIcon = leaflet.icon({
   iconUrl: 'img/pin.svg',
   iconSize: [25, 35],
