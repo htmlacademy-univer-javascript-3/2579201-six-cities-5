@@ -19,6 +19,7 @@ const Main = () : JSX.Element => {
   const offers = useAppSelector((state)=> state.offers);
   const activeSort = useAppSelector((state)=> state.activeSort);
   const isLoading = useAppSelector((state)=> state.isLoading);
+  const error = useAppSelector((state)=> state.error);
 
   const dispatch = useAppDispatch();
 
@@ -44,6 +45,7 @@ const Main = () : JSX.Element => {
               <b className="places__found">{activeOffers.length} places to stay in {city.name}</b>
               <SortBar />
               <div className="cities__places-list places__list tabs__content">
+                {error}
                 {isLoading ? <Spinner /> : <OffersList offers={sort[activeSort](activeOffers)} pageBlock='cities'/>}
               </div>
             </section>

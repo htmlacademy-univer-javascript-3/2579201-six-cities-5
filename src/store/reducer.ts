@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeActiveCity, changeActiveSort, setHoveredOffer, setIsLoading, setOffers } from './action';
+import { changeActiveCity, changeActiveSort, setError, setHoveredOffer, setIsLoading, setOffers } from './action';
 import { City, OfferType } from '../types/offers';
 import { cities } from '../const';
 import { SortOption } from '../types/sort';
@@ -10,12 +10,16 @@ const initialState:{
   activeSort: SortOption;
   hoveredOffer: OfferType | null;
   isLoading: boolean;
+  authorizationStatus: boolean;
+  error: string;
 } = {
   city: cities.Paris,
   offers: [] as OfferType[],
   activeSort: 'Popular',
   hoveredOffer: null,
   isLoading: true,
+  authorizationStatus: false,
+  error: '',
 };
 
 const reducer = createReducer(initialState, (builder)=>{
@@ -36,6 +40,9 @@ const reducer = createReducer(initialState, (builder)=>{
     })
     .addCase(setIsLoading, (state, action)=>{
       state.isLoading = action.payload;
+    })
+    .addCase(setError, (state, action)=>{
+      state.error = action.payload.error;
     });
 });
 

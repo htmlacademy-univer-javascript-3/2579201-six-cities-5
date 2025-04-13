@@ -15,21 +15,29 @@ export const setHoveredOffer = createAction<{offer: OfferType | null}>('offers/s
 
 export const setIsLoading = createAction<boolean>('data/setIsLoading');
 
+export const setError = createAction<{error: string}>('error/setError');
+
 export const fetchOffers = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
   state: State;
-  extra: AxiosInstance;
-}>
-(
+  extra: { api: AxiosInstance };
+}>(
   'data/fetchOffers',
-  async (_arg, {dispatch, extra: api}) => {
+  async (_arg, { dispatch, extra: { api } }) => {
     dispatch(setIsLoading(true));
     try {
-      const {data} = await api.get<OfferType[]>(APIRoute.Offers);
-      dispatch(setOffers({offers: data}));
-
-    } finally{
+      const { data } = await api.get<OfferType[]>(APIRoute.Offers);
+      dispatch(setOffers({ offers: data }));
+      dispatch(setError({ error: '' }));
+    } catch (error: unknown) {
+      let errorMessage = 'Неизвестная ошибка';
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      dispatch(setError({ error: errorMessage }));
+    } finally {
       dispatch(setIsLoading(false));
     }
   },
 );
+
