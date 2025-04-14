@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeActiveCity, changeActiveSort, fetchOffers, setHoveredOffer } from './action';
+import { changeActiveCity, changeActiveSort, setError, setHoveredOffer, setIsLoading, setOffers } from './action';
 import { City, OfferType } from '../types/offers';
 import { cities } from '../const';
 import { SortOption } from '../types/sort';
@@ -9,11 +9,17 @@ const initialState:{
   offers: OfferType[];
   activeSort: SortOption;
   hoveredOffer: OfferType | null;
+  isLoading: boolean;
+  authorizationStatus: boolean;
+  error: string | null;
 } = {
   city: cities.Paris,
   offers: [] as OfferType[],
   activeSort: 'Popular',
   hoveredOffer: null,
+  isLoading: true,
+  authorizationStatus: false,
+  error: null,
 };
 
 const reducer = createReducer(initialState, (builder)=>{
@@ -22,7 +28,7 @@ const reducer = createReducer(initialState, (builder)=>{
       const {city} = action.payload;
       state.city = city;
     })
-    .addCase(fetchOffers, (state, action)=>{
+    .addCase(setOffers, (state, action)=>{
       const {offers} = action.payload;
       state.offers = offers;
     })
@@ -31,6 +37,12 @@ const reducer = createReducer(initialState, (builder)=>{
     })
     .addCase(setHoveredOffer, (state, action)=>{
       state.hoveredOffer = action.payload.offer;
+    })
+    .addCase(setIsLoading, (state, action)=>{
+      state.isLoading = action.payload;
+    })
+    .addCase(setError, (state, action)=>{
+      state.error = action.payload.error;
     });
 });
 

@@ -7,6 +7,13 @@ export enum AppRoute {
   Login = '/login',
   Favorites = '/favorites',
   Offer = '/offer/',
+  NotFound = '/not-found',
+}
+
+export enum APIRoute {
+  Offers = '/offers',
+  Favorite = '/favorite',
+  Comments = '/comments',
 }
 
 export const defaultCustomIcon = leaflet.icon({
