@@ -11,7 +11,7 @@ const initialState:{
   hoveredOffer: OfferType | null;
   isLoading: boolean;
   authorizationStatus: boolean;
-  error: string;
+  error: string | null;
 } = {
   city: cities.Paris,
   offers: [] as OfferType[],
@@ -19,7 +19,7 @@ const initialState:{
   hoveredOffer: null,
   isLoading: true,
   authorizationStatus: false,
-  error: '',
+  error: null,
 };
 
 const reducer = createReducer(initialState, (builder)=>{

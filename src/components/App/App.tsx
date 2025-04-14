@@ -1,18 +1,20 @@
 import { Favorites } from '../../pages/Favorites/Favorites';
 import { Login } from '../../pages/Login/Login';
 import { Main } from '../../pages/Main/Main';
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import { Route, Routes} from 'react-router-dom';
 import { Offer } from '../../pages/Offer/Offer';
 import { NotFound } from '../../pages/NotFound/NotFound';
 import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
 import { AppRoute } from '../../const';
 import { Review } from '../../types/review';
+import { browserHistory } from '../../utils/history';
+import { HistoryRouter } from '../HistoryRouter/HistoryRouter';
 type AppProps = {
   reviews: Review[];
 }
 
 const App = ({ reviews } : AppProps) : JSX.Element => (
-  <BrowserRouter>
+  <HistoryRouter history={browserHistory}>
     <Routes>
       <Route
         path={AppRoute.Root}
@@ -39,6 +41,6 @@ const App = ({ reviews } : AppProps) : JSX.Element => (
         element={<NotFound />}
       />
     </Routes>
-  </BrowserRouter>);
+  </HistoryRouter>);
 
 export { App };
