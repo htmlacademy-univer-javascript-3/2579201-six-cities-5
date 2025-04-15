@@ -13,11 +13,10 @@ const Login = () : JSX.Element =>{
 
   const dispatch = useAppDispatch();
 
-
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    if (loginRef.current !== null && passwordRef.current !== null) {
+    if (loginRef.current !== null && passwordRef.current !== null && loginRef.current?.value.length > 0 && passwordRef.current?.value.length > 0) {
       dispatch(login({
         login: loginRef.current.value,
         password: passwordRef.current.value
