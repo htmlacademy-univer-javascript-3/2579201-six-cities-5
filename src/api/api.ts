@@ -1,9 +1,10 @@
-import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { StatusCodes } from 'http-status-codes';
 import { errorHandler } from '../utils/error';
 import { store } from '../store/store';
 import { AppRoute } from '../const';
 import { redirectToNotFound } from '../store/action';
+import { getToken } from './token';
 
 const BASE_URL = 'https://14.design.htmlacademy.pro/six-cities';
 const TIMEOUT = 5000;
@@ -28,6 +29,16 @@ export const createApi = (): AxiosInstance => {
     timeout: TIMEOUT
   });
 
+  api.interceptors.request.use(
+    (config: InternalAxiosRequestConfig) => {
+      const token = getToken();
+      if (token && config.headers) {
+        config.headers['x-token'] = token;
+      }
+
+      return config;
+    },
+  );
 
   api.interceptors.response.use(
     (response)=> response,

@@ -1,7 +1,8 @@
 import { createAction } from '@reduxjs/toolkit';
 import { City, OfferType } from '../types/offers';
 import { SortOption } from '../types/sort';
-import { AppRoute } from '../const';
+import { AppRoute, AuthorizationStatus } from '../const';
+import { UserData } from '../types/auth';
 
 
 export const changeActiveCity = createAction<{city: City}>('city/changeActiveCity');
@@ -17,3 +18,7 @@ export const setIsLoading = createAction<boolean>('data/setIsLoading');
 export const setError = createAction<{error: string | null}>('error/setError');
 
 export const redirectToNotFound = createAction<AppRoute>('redirect/redirectToNotFound');
+
+export const setAuthStatus = createAction<AuthorizationStatus>('user/setAuthStatus');
+
+export const setUser = createAction<UserData | null>('user/setUser');
