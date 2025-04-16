@@ -8,12 +8,11 @@ type PrivateRouteProps = {
 
 const PrivateRoute = ({ children}: PrivateRouteProps) => {
   const authorizationStatus = useAppSelector((state)=> state.authorizationStatus);
-  if (authorizationStatus === AuthorizationStatus.Auth){
+  if (authorizationStatus === AuthorizationStatus.Auth) {
     return children;
-  } else {
-    <Navigate to={'/login'} />;
-
   }
+
+  return <Navigate to={'/login'} />;
 };
 
 
