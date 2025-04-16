@@ -19,15 +19,12 @@ const Main = () : JSX.Element => {
   const offers = useAppSelector((state)=> state.offers);
   const activeSort = useAppSelector((state)=> state.activeSort);
   const isLoading = useAppSelector((state)=> state.isLoading);
-
   const dispatch = useAppDispatch();
-
   const activeOffers = getOffersByCity(offers, city);
 
   const points = usePoints(activeOffers);
 
   useEffect(()=>{
-
     dispatch(fetchOffers());
   }, []);
 
