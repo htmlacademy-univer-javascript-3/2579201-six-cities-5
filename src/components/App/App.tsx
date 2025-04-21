@@ -6,17 +6,14 @@ import { Offer } from '../../pages/Offer/Offer';
 import { NotFound } from '../../pages/NotFound/NotFound';
 import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
 import { AppRoute } from '../../const';
-import { Review } from '../../types/review';
 import { browserHistory } from '../../utils/history';
 import { HistoryRouter } from '../HistoryRouter/HistoryRouter';
 import { useEffect } from 'react';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { checkAuth } from '../../store/actionAPI';
-type AppProps = {
-  reviews: Review[];
-}
 
-const App = ({ reviews } : AppProps) : JSX.Element => {
+
+const App = () : JSX.Element => {
   const dispatch = useAppDispatch();
   useEffect(()=>{
     dispatch(checkAuth());
@@ -42,7 +39,7 @@ const App = ({ reviews } : AppProps) : JSX.Element => {
         />
         <Route
           path={`${AppRoute.Offer}:id`}
-          element={<Offer reviews={reviews}/>}
+          element={<Offer/>}
         />
         <Route
           path='*'

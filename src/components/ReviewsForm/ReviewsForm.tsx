@@ -1,8 +1,16 @@
 import { ChangeEvent, useState } from 'react';
 import { RatingStar } from '../RatingStar/RatingStar';
 import { RatingValue } from '../../types/rating';
+import { postComment } from '../../store/actionAPI';
+import { ExtendedOffer, newComment } from '../../types/offers';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+type ReviewsFormProps ={
+  offerId: ExtendedOffer['id'];
+}
 
-const ReviewsForm = () => {
+const ReviewsForm = ({offerId}: ReviewsFormProps) => {
+  const dispatch = useAppDispatch();
+
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState<RatingValue | null>(null);
 
@@ -24,8 +32,19 @@ const ReviewsForm = () => {
 
   const isSubmitDisabled = comment.length > 50 && rating !== null;
 
+  function handleSubmit(e: React.FormEvent){
+    e.preventDefault();
+    if (isSubmitDisabled){
+      const payload: newComment = {comment, rating};
+      dispatch(postComment({offerId: offerId, comment: payload}));
+      setComment('');
+      setRating(null);
+    }
+  }
+
+
   return (
-    <form className="reviews__form form" action="#" method="post">
+    <form onSubmit={handleSubmit} className="reviews__form form" action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {Object.entries(scores).reverse().map(([score, title]) =>(

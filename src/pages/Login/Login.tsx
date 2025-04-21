@@ -15,8 +15,8 @@ const Login = () : JSX.Element =>{
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    const loginValue = loginRef.current !== null ? loginRef.current?.value.trim() : '';
-    const passwordValue = passwordRef.current !== null ? passwordRef.current?.value.trim() : '';
+    const loginValue = loginRef.current?.value.trim() || '';
+    const passwordValue = passwordRef.current?.value.trim() || '';
     if (loginValue.length > 0 && passwordValue.length > 0) {
       dispatch(login({
         login: loginValue,
