@@ -37,16 +37,7 @@ export type OfferType = {
   previewImage: string;
   }
 
-export type ExtendedOffer = {
-    id: string;
-    title: string;
-    type: string;
-    price: number;
-    city: City;
-    location: Location;
-    isFavorite: boolean;
-    isPremium: boolean;
-    rating: RatingValue;
+export type FullOffer = OfferType & {
     description: string;
     bedrooms: number;
     goods: string[];

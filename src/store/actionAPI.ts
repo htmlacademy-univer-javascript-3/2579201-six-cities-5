@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { addComment, redirectToNotFound, setAuthStatus, setComments, setError, setIsLoading, setOffers, setOffersNearby, setTargetedOffer, setUser } from './action';
 import { AppDispatch, State } from '../types/state';
 import { AxiosInstance } from 'axios';
-import { Comment, ExtendedOffer, newComment, OfferType } from '../types/offers';
+import { Comment, FullOffer, newComment, OfferType } from '../types/offers';
 import { APIRoute, AppRoute, AuthorizationStatus } from '../const';
 import { errorHandler } from '../utils/error';
 import { store } from './store';
@@ -36,7 +36,7 @@ export const fetchOffers = createAsyncThunk<void, undefined, {
   },
 );
 
-export const fetchOffer = createAsyncThunk<boolean, ExtendedOffer['id'], {
+export const fetchOffer = createAsyncThunk<boolean, FullOffer['id'], {
   dispatch: AppDispatch;
   state: State;
   extra: { api: AxiosInstance };
@@ -47,7 +47,7 @@ export const fetchOffer = createAsyncThunk<boolean, ExtendedOffer['id'], {
     dispatch(setTargetedOffer(null));
     dispatch(setIsLoading(true));
     try {
-      const { data } = await api.get<ExtendedOffer>(`${APIRoute.Offers}/${id}`);
+      const { data } = await api.get<FullOffer>(`${APIRoute.Offers}/${id}`);
       dispatch(setTargetedOffer(data));
     } catch (error: unknown) {
       if (error instanceof Error) {
@@ -62,7 +62,7 @@ export const fetchOffer = createAsyncThunk<boolean, ExtendedOffer['id'], {
   },
 );
 
-export const fetchOffersNearby = createAsyncThunk<void, ExtendedOffer['id'], {
+export const fetchOffersNearby = createAsyncThunk<void, FullOffer['id'], {
   dispatch: AppDispatch;
   state: State;
   extra: { api: AxiosInstance };
@@ -85,7 +85,7 @@ export const fetchOffersNearby = createAsyncThunk<void, ExtendedOffer['id'], {
   },
 );
 
-export const fetchComments = createAsyncThunk<void, ExtendedOffer['id'], {
+export const fetchComments = createAsyncThunk<void, FullOffer['id'], {
   dispatch: AppDispatch;
   state: State;
   extra: { api: AxiosInstance };
@@ -108,7 +108,7 @@ export const fetchComments = createAsyncThunk<void, ExtendedOffer['id'], {
 );
 
 
-export const postComment = createAsyncThunk<void, {offerId:ExtendedOffer['id']; comment: newComment}, {
+export const postComment = createAsyncThunk<void, {offerId:FullOffer['id']; comment: newComment}, {
   dispatch: AppDispatch;
   state: State;
   extra: { api: AxiosInstance };

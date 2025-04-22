@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { addComment, changeActiveCity, changeActiveSort, setAuthStatus, setComments, setError, setHoveredOffer, setIsLoading, setOffers, setOffersNearby, setTargetedOffer, setUser } from './action';
-import { City, Comment, ExtendedOffer, OfferType } from '../types/offers';
+import { City, Comment, FullOffer, OfferType } from '../types/offers';
 import { AuthorizationStatus, cities } from '../const';
 import { SortOption } from '../types/sort';
 import { UserData } from '../types/auth';
@@ -14,7 +14,7 @@ const initialState:{
   authorizationStatus: AuthorizationStatus;
   error: string | null;
   user: null | UserData;
-  targetedOffer: null | ExtendedOffer;
+  targetedOffer: null | FullOffer;
   comments: Comment[] ;
   offersNearby: null | OfferType[];
 } = {
