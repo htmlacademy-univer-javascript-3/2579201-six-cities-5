@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeActiveCity, changeActiveSort, setAuthStatus, setError, setHoveredOffer, setIsLoading, setOffers, setUser } from './action';
-import { City, OfferType } from '../types/offers';
+import { addComment, changeActiveCity, changeActiveSort, setAuthStatus, setComments, setError, setHoveredOffer, setIsLoading, setOffers, setOffersNearby, setTargetedOffer, setUser } from './action';
+import { City, Comment, FullOffer, OfferType } from '../types/offers';
 import { AuthorizationStatus, cities } from '../const';
 import { SortOption } from '../types/sort';
 import { UserData } from '../types/auth';
@@ -14,15 +14,21 @@ const initialState:{
   authorizationStatus: AuthorizationStatus;
   error: string | null;
   user: null | UserData;
+  targetedOffer: null | FullOffer;
+  comments: Comment[] ;
+  offersNearby: null | OfferType[];
 } = {
   city: cities.Paris,
-  offers: [] as OfferType[],
+  offers: [],
   activeSort: 'Popular',
   hoveredOffer: null,
   isLoading: true,
   authorizationStatus: AuthorizationStatus.Unknown,
   error: null,
   user: null,
+  targetedOffer:null,
+  comments: [],
+  offersNearby: null,
 };
 
 const reducer = createReducer(initialState, (builder)=>{
@@ -52,7 +58,20 @@ const reducer = createReducer(initialState, (builder)=>{
     })
     .addCase(setUser, (state, action)=>{
       state.user = action.payload;
+    })
+    .addCase(setTargetedOffer, (state, action)=>{
+      state.targetedOffer = action.payload;
+    })
+    .addCase(setComments, (state, action)=> {
+      state.comments = action.payload;
+    })
+    .addCase(setOffersNearby, (state, action)=>{
+      state.offersNearby = action.payload;
+    })
+    .addCase(addComment, (state, acttion)=>{
+      state.comments.push(acttion.payload);
     });
+
 });
 
 export {reducer};

@@ -36,3 +36,25 @@ export type OfferType = {
   rating: RatingValue;
   previewImage: string;
   }
+
+export type FullOffer = OfferType & {
+    description: string;
+    bedrooms: number;
+    goods: string[];
+    host: Host;
+    images: string[];
+    maxAdults: number;
+  };
+
+export type Comment = {
+    id: string;
+    date: string;
+    user: Host;
+    comment: string;
+    rating: number;
+}
+
+export type newComment = {
+  comment: string;
+  rating: number;
+};

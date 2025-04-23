@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { setAuthStatus, setError, setIsLoading, setOffers, setUser } from './action';
+import { addComment, redirectToNotFound, setAuthStatus, setComments, setError, setIsLoading, setOffers, setOffersNearby, setTargetedOffer, setUser } from './action';
 import { AppDispatch, State } from '../types/state';
 import { AxiosInstance } from 'axios';
-import { OfferType } from '../types/offers';
-import { APIRoute, AuthorizationStatus } from '../const';
+import { Comment, FullOffer, newComment, OfferType } from '../types/offers';
+import { APIRoute, AppRoute, AuthorizationStatus } from '../const';
 import { errorHandler } from '../utils/error';
 import { store } from './store';
 import { dropToken, saveToken } from '../api/token';
@@ -32,6 +32,96 @@ export const fetchOffers = createAsyncThunk<void, undefined, {
       }
     } finally {
       dispatch(setIsLoading(false));
+    }
+  },
+);
+
+export const fetchOffer = createAsyncThunk<boolean, FullOffer['id'], {
+  dispatch: AppDispatch;
+  state: State;
+  extra: { api: AxiosInstance };
+}>(
+  'data/fetchOffer',
+  async (id, { dispatch, extra: { api } }) => {
+    let isOfferLoaded = true;
+    dispatch(setTargetedOffer(null));
+    dispatch(setIsLoading(true));
+    try {
+      const { data } = await api.get<FullOffer>(`${APIRoute.Offers}/${id}`);
+      dispatch(setTargetedOffer(data));
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        errorHandler(error.message);
+        dispatch(redirectToNotFound(AppRoute.NotFound));
+        isOfferLoaded = false;
+      }
+    } finally {
+      dispatch(setIsLoading(false));
+    }
+    return isOfferLoaded;
+  },
+);
+
+export const fetchOffersNearby = createAsyncThunk<void, FullOffer['id'], {
+  dispatch: AppDispatch;
+  state: State;
+  extra: { api: AxiosInstance };
+}>(
+  'data/fetchOffersNearby',
+  async (id, { dispatch, extra: { api } }) => {
+    dispatch(setOffersNearby(null));
+    dispatch(setIsLoading(true));
+    try {
+      const { data } = await api.get<OfferType[]>(`${APIRoute.Offers}/${id}/nearby`);
+
+      dispatch(setOffersNearby(data));
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        errorHandler(error.message);
+      }
+    } finally {
+      dispatch(setIsLoading(false));
+    }
+  },
+);
+
+export const fetchComments = createAsyncThunk<void, FullOffer['id'], {
+  dispatch: AppDispatch;
+  state: State;
+  extra: { api: AxiosInstance };
+}>(
+  'data/fetchComments',
+  async (id, { dispatch, extra: { api } }) => {
+    dispatch(setComments([]));
+    dispatch(setIsLoading(true));
+    try {
+      const { data } = await api.get<Comment[]>(`${APIRoute.Comments}/${id}`);
+      dispatch(setComments(data));
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        errorHandler(error.message);
+      }
+    } finally {
+      dispatch(setIsLoading(false));
+    }
+  },
+);
+
+
+export const postComment = createAsyncThunk<void, {offerId:FullOffer['id']; comment: newComment}, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: { api: AxiosInstance };
+}>(
+  'comments/postComment',
+  async ({offerId, comment}, { dispatch, extra: { api } }) => {
+    try {
+      const {data} = await api.post<Comment>(`${APIRoute.Comments}/${offerId}`, comment);
+      dispatch(addComment(data));
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        errorHandler(error.message);
+      }
     }
   },
 );

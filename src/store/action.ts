@@ -1,5 +1,5 @@
 import { createAction } from '@reduxjs/toolkit';
-import { City, OfferType } from '../types/offers';
+import { City, Comment, FullOffer, OfferType } from '../types/offers';
 import { SortOption } from '../types/sort';
 import { AppRoute, AuthorizationStatus } from '../const';
 import { UserData } from '../types/auth';
@@ -8,6 +8,14 @@ import { UserData } from '../types/auth';
 export const changeActiveCity = createAction<{city: City}>('city/changeActiveCity');
 
 export const setOffers = createAction<{offers: OfferType[]}>('offers/setOffers');
+
+export const setTargetedOffer = createAction<FullOffer | null>('offers/setTargetedOffer');
+
+export const setComments = createAction<Comment[]>('comments/setCommnets');
+
+export const addComment = createAction<Comment>('comments/addComment');
+
+export const setOffersNearby = createAction<OfferType[] | null>('offers/setOffersNearby');
 
 export const changeActiveSort = createAction<{sort: SortOption}>('sort/changeActiveSort');
 
